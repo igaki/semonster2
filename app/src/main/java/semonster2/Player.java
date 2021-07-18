@@ -4,24 +4,32 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Player {
+  String name;// Player name
   ArrayList<Monster> monsterDeck = new ArrayList<>();
-  LinkedList<Integer> nameNumList;// randomな0~4の数値を必要な数保存しておく
-  LinkedList<Integer> rareNumList;
+  LinkedList<Integer> randomNumberList;// randomな0~4の数値を必要な数保存しておく
 
-  Player(LinkedList<Integer> nameNumList, LinkedList<Integer> rareNumList) {
-    this.nameNumList = nameNumList;
-    this.rareNumList = rareNumList;
+  Player(LinkedList<Integer> randomNumberList, String playerName) {
+    this.randomNumberList = randomNumberList;
+    this.name = playerName;
   }
 
+  /**
+   * モンスターを5体分drawする．利用するランダムな値(0~4)はrandomNumberListから取得する
+   */
   public void drawMonsters() {
     for (int i = 0; i < 5; i++) {
-      this.monsterDeck.add(new Monster(this.nameNumList.pop(), this.rareNumList.pop()));
+      this.monsterDeck.add(new Monster(this.randomNumberList.pop(), this.randomNumberList.pop()));
     }
   }
 
-  public void showDeck() {
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("Deck:" + this.name + "\n");
     for (Monster m : this.monsterDeck) {
-      System.out.println(m);
+      sb.append(m);
     }
+    return sb.toString();
   }
+
 }

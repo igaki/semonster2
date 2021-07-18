@@ -17,6 +17,6 @@ public class Monster {
   @Override
   public String toString() {
 
-    return this.name + ":レア度[" + this.rare + "]";
+    return this.name + ":レア度[" + this.rare + "]\n";
   }
 }

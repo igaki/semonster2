@@ -8,8 +8,7 @@ import java.util.Random;
 
 public class App {
   final static Random random = new Random();
-
-  final static int maxRandomNumber = 4;// 生成するランダムな数値の上限
+  final static int maxRandomNumber = 4;// ランダムな数値の最大値(0～4)
 
   public String getGreeting() {
     return "Hello SEMonster";
@@ -17,13 +16,14 @@ public class App {
 
   public static void main(String[] args) {
     System.out.println(new App().getGreeting());
-    Player player = new Player(createRandomList(5), createRandomList(5));// モンスターの名前とレア度を決めるランダムな数値を5個ずつ渡す
-    player.drawMonsters();
-    player.showDeck();
+    SeMonsterGame mf = new SeMonsterGame(createRandomList(10));
+    mf.addPlayer("user");
+    mf.draw("user");
+
   }
 
   /**
-   * 指定した数の0~4(randomNumberCount)のランダムな数値を作成し，LinkedListに格納して返却する
+   * 指定した数の0~4(maxRandomNumber)のランダムな数値を作成し，LinkedListに格納して返却する
    *
    * @param randNum
    * @return
@@ -36,4 +36,5 @@ public class App {
 
     return randNumList;
   }
+
 }
